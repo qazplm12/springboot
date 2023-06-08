@@ -24,4 +24,53 @@ public class BoardServiceImpl implements BoardService {
         // BoardMapper 인터페이스에서 제공하는 메소드를 실행
         return boardMapper.selectBoardList();
     }
+
+    // 게시판 글 상세 보기
+    @Override
+    public BoardDTO selectBoardDetail(int boardIdx) throws Exception {
+        // 1. 컨트롤러에서 전달된 게시물 번호 가져오기
+        // 2. mapper를 사용하여 DB에서 지정한 게시물 정보 가져오기
+        // 3. 가져온 게시물 정보를 컨트롤러로 리턴
+        // 4. 가져온 게시물 정보를 컨트롤러로 리턴
+
+        // 전달받은 게시물 번호를 사용하여 mybatis mapper의 updateHicCount() 메소드를 실행
+        boardMapper.updateHitCount(boardIdx);
+
+        // 전달받은 게시물 번호를 사용하여 mybatis mapper의 selectBoardDetail() 메소드를 실행
+        // 조회된 정보를 BoardDTO 클래스 타입의 변수에 대입
+//        BoardDTO board = boardMapper.selectBoardDetail(boardIdx);
+        // 저장된 정보를 컨트롤러로 리턴
+//        return board;
+
+        return boardMapper.selectBoardDetail(boardIdx);
+    }
+
+    // 게시판 글 등록
+    @Override
+    public void insertBoard(BoardDTO board) throws Exception {
+        // 1. 컨트롤러에서 전달된 데이터 가져오기
+        // 2. mapper를 사용하여 DB에 데이터 등록
+
+        // 전달받은 데이터를 매개변수로 사용하여 mybatis mapper의 insertBoard() 메소드 실행
+        boardMapper.insertBoard(board);
+    }
+
+    // 게시판 글 수정
+    @Override
+    public void updateBoard(BoardDTO board) throws Exception {
+        // 1. 컨트롤러에서 전달된 데이터 가져오기
+        // 2. mapper를 사용하여 DB의 데이터 수정하기
+
+        // 전달받은 데이터를 매개변수로 사용하여 mybatis mapper의 updateBoard() 메소드를 실행
+        boardMapper.updateBoard(board);
+    }
+
+    @Override
+    public void deleteBoard(int boardIdx) throws Exception {
+        // 1. 컨트롤러에서 전달된 게시물 번호 가져오기
+        // 2. mapper를 사용하여 DB의 게시물 삭제
+
+        // 전달받은 게시물 번호를 매개변수로 사용하여 mybatis mapper의 deleteBoard() 메소드를 실행
+        boardMapper.deleteBoard(boardIdx);
+    }
 }

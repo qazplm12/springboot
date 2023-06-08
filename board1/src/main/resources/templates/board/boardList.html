@@ -18,6 +18,14 @@
     </script>
 </head>
 <body>
+<header>
+    <div class="container py-5 my-5">
+        <div class="text-center">
+            <h1>스프링부트로 게시판 만들기</h1>
+            <h3>게시판 목록 페이지</h3>
+        </div>
+    </div>
+</header>
 <main class="container">
     <table class="table table-hover table-striped">
         <colgroup>
@@ -28,7 +36,7 @@
             <col style="width: 5%"/>
         </colgroup>
         <thead>
-        <tr>
+        <tr class="text-center">
             <th>글번호</th>
             <th>제목</th>
             <th>글쓴이</th>
@@ -47,9 +55,13 @@
 
 
 
-        <tr th:if="${#lists.size(boardList)} > 0" th:each="item : ${boardList}">
+        <tr th:if="${#lists.size(boardList)} > 0" th:each="item : ${boardList}" class="text-center">
             <td th:text="${item.boardIdx}">1</td>
-            <td th:text="${item.title}">테스트 제목1</td>
+<!--            <td th:text="${item.title}"></td>-->
+            <td>
+                <a th:text="${item.title}" href="/board/openBoardDetail.do?boardIdx="
+                    th:attrappend="href=${item.boardIdx}" class="text-decoration-none"></a>
+            </td>
             <td th:text="${item.createId}">테스터 1</td>
             <td th:text="${item.createDt}">2023-06-01 12:25:00</td>
             <td th:text="${item.hitCnt}">0</td>
@@ -59,9 +71,12 @@
         </tr>
         </tbody>
     </table>
-
-    <p th:text="${apple}"></p>
-    <p th:text="${samsung}"></p>
+    <div class="d-flex justify-content-end">
+        <a href="/board/writeBoard.do" class="btn btn-primary">글쓰기</a>
+    </div>
 </main>
+<footer class="container-fluid my-5 text-center border-top">
+    <p class="lead text-muted py-5">made by fullstack 505</p>
+</footer>
 </body>
 </html>

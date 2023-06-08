@@ -25,4 +25,47 @@
         WHERE deleted_yn = 'N'
         ORDER BY board_idx DESC
     </select>
+
+    <!-- parameterType 사용 시 자바 인터페이스에서 제공하는 매개변수 명을 그대로 사용함-->
+    <!-- #{} 안에 변수명을 입력하여 사용함-->
+    <!-- 자바 인터페이스에서 @Param 어노테이션 사용시 해당 어노테이션에서 제공한 이름으로 사용함-->
+    <!-- parameterType이 DTO 클래스 타입으로 설정된 경우 해당 DTO 클래스의 필드명으로 사용함-->
+    <!-- 게시물 상세보기 SQL문 -->
+    <select id="selectBoardDetail" resultType="com.bitc.board1.dto.BoardDTO" parameterType="int">
+        SELECT board_idx, title, content, create_id, create_dt, update_id, update_dt, hit_cnt
+        FROM sboard
+        WHERE board_idx = #{boardIdx}
+        AND deleted_yn = 'N'
+    </select>
+
+    <!-- 게시물 등록 SQL문 -->
+    <insert id="insertBoard" parameterType="com.bitc.board1.dto.BoardDTO">
+        INSERT INTO
+        sboard (title, content, create_id, create_dt)
+        VALUES (#{title}, #{content}, #{createId}, NOW())
+    </insert>
+
+    <!-- 게시물 수정 SQL문 -->
+    <update id="updateBoard" parameterType="com.bitc.board1.dto.BoardDTO">
+        UPDATE sboard
+        SET
+        title = #{title},
+        content = #{content},
+        update_id = #{updateId},
+        update_dt = NOW()
+        WHERE board_idx = #{boardIdx}
+    </update>
+
+    <!-- 게시물 삭제 SQL문 -->
+    <delete id="deleteBoard" parameterType="int">
+        UPDATE sboard SET deleted_yn ='Y'
+        WHERE board_idx = #{idx}
+    </delete>
+
+    <!-- 게시물 조회수 업데이트 SQL문 -->
+    <update id="updateHitCount" parameterType="int">
+        UPDATE sboard
+        SET hit_cnt = hit_cnt + 1
+        WHERE board_idx = #{boardIdx}
+    </update>
 </mapper>
