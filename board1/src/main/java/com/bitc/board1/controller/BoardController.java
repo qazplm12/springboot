@@ -1,15 +1,21 @@
 package com.bitc.board1.controller;
 
 import com.bitc.board1.dto.BoardDTO;
+import com.bitc.board1.dto.BoardFileDTO;
 import com.bitc.board1.service.BoardService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -147,6 +153,29 @@ public class BoardController {
 
         // 게시물 삭제 후 지정한 목록 페이지로 이동
         return "redirect:/board/boardList.do";
+    }
+
+    @RequestMapping(value = "/board/downloadBoardFile.do", method = RequestMethod.GET)
+    public void downloadBoardFile(
+            @RequestParam("idx") int idx,
+            @RequestParam("boardIdx") int boardIdx,
+            HttpServletResponse resp
+    ) throws Exception {
+
+        BoardFileDTO boardFile = boardService.selectBoardFileInfo(idx, boardIdx);
+
+        if (!ObjectUtils.isEmpty(boardFile)) {
+            String fileName = boardFile.getOriginalFileName();
+            byte[] files = FileUtils.readFileToByteArray(new File(boardFile.getStoredFileName()));
+
+            resp.setContentType("application/octet-stream");
+            resp.setContentLength(files.length);
+            resp.setHeader("Content-Disposition",
+                    "attachment; fileName =\"" + URLEncoder.encode(fileName, "UTF-8") + "\"");
+            resp.getOutputStream().write(files);
+            resp.getOutputStream().flush();
+            resp.getOutputStream().close();
+        }
     }
 
 }

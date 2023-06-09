@@ -1,8 +1,8 @@
 plugins {
     // 해당 프로젝트에서 사용하는 프로그래밍 언어 종류
     id 'java'
-    // 스프링 부트 버전
-    id 'org.springframework.boot' version '3.1.0'
+    // 스프링 부트 버전 / commons fileupload 라이브러리 때문에 2.7버전 사용
+    id 'org.springframework.boot' version '2.7.12'
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
@@ -29,8 +29,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     // 스프링부트 WEB : Spring MVC 패턴을 사용하기 위한 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // MyBatis : DB ORM, DB를 쉽게 사용하기 위한 라이브러리
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+    // MyBatis : DB ORM, DB를 쉽게 사용하기 위한 라이브러리 (3.0.2 에서 변경)
+    // 스프링부트 2버전대를 사용하기 위해서는 mybatis 버전을 2.3.1로 변경해야 함
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
     // lombok : DTO 클래스 사용 시 getter/setter 자동 생성
     compileOnly 'org.projectlombok:lombok'
     // devtools : 개발 편의성 라이브러리, 서버 자동 재시작 등의 기능
@@ -42,6 +43,13 @@ dependencies {
     // lombok
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation 'commons-io:commons-io:2.12.0'
+
+
+    // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+    implementation 'commons-fileupload:commons-fileupload:1.5'
 }
 
 tasks.named('test') {
