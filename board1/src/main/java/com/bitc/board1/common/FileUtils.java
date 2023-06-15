@@ -34,7 +34,9 @@ public class FileUtils {
         ZonedDateTime current = ZonedDateTime.now();
 
         // 경로 생성, 현재 타임존 기준 시간을 패턴에 맞게 설정하여 출력
-        String path = "images/" + current.format(format);
+//        String path = "images/" + current.format(format);
+        // 현재 StandardServletMultipartResolver 사용 시 전체 경로가 아니면 파일 복사 시 오류가 발생함
+        String path = "C:/upload" + current.format(format);
 
         // 자바의 File 클래스 객체 생성, 위에서 생성한 경로로 생성
         File file = new File(path);
@@ -59,7 +61,7 @@ public class FileUtils {
 
             // 파일 정보 목록에 있는 내용을 하나씩 출력
             for (MultipartFile multipartFile : fileLists) {
-                // 파일 정보가 비었는지 확인, 비었으면 treu, 존재하면 false
+                // 파일 정보가 비었는지 확인, 비었으면 true, 존재하면 false
                 if (multipartFile.isEmpty() == false) {
                     // 확장자명 가져오기
                     contentType = multipartFile.getContentType();
