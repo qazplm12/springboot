@@ -24,16 +24,24 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // pageHelper
-    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.7'
+    // mvn jakarta.xml.bind 검색
+    // https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
+    // mvn jaxb-impl 검색
+    // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+    implementation 'com.sun.xml.bind:jaxb-impl:4.0.3'
+
+    // mvn jakarta.activation 검색
+    // https://mvnrepository.com/artifact/jakarta.activation/jakarta.activation-api
+    implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
+
 
 }
 

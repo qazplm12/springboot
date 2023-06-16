@@ -20,7 +20,7 @@
         values (#{title}, #{content}, #{createId}, NOW())
     </insert>
     <update id="updateBoard" parameterType="com.bitc.board3.DTO.BoardDTO">
-        UPDATE sboard SET title = #{title}, content = #{content}, update_id =#{updateId}, update_dt = NOW()
+        UPDATE sboard SET title = #{title}, content = #{content}, update_id = #{updateId}, update_dt = NOW()
         WHERE board_idx = #{boardIdx}
     </update>
     <update id="deleteBoard" parameterType="int">
