@@ -88,13 +88,13 @@ public class BoardServiceImpl implements BoardService {
 //
 //        }
 
-        for (BoardFileDTO file : fileList) {
-            System.out.println("***** 파일 정보 *****");
-            System.out.println("파일 이름 : " + file.getOriginalFileName());
-            System.out.println("파일 크기 : " + file.getFileSize());
-            System.out.println("파일 저장 위치 : " + file.getStoredFileName());
-            System.out.println();
-        }
+//        for (BoardFileDTO file : fileList) {
+//            System.out.println("***** 파일 정보 *****");
+//            System.out.println("파일 이름 : " + file.getOriginalFileName());
+//            System.out.println("파일 크기 : " + file.getFileSize());
+//            System.out.println("파일 저장 위치 : " + file.getStoredFileName());
+//            System.out.println();
+//        }
 
 
 

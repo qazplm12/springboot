@@ -54,7 +54,7 @@
         <!-- th:unless : thymeleaf를 사용하여 단순 if문으로 동작 결과가 false일 경우 동작-->
         <!-- th:each : thymeleaf를 사용하여 반복문을 구현 -->
 
-        <tr th:if="${#lists.size(boardList)} > 0" th:each="item : ${boardList}" class="text-center">
+        <tr th:if="${#lists.sizeboardList)} > 0" th:each="item : ${boardList}" class="text-center">
             <td th:text="${item.boardIdx}">1</td>
 <!--            <td th:text="${item.title}"></td>-->
             <td>

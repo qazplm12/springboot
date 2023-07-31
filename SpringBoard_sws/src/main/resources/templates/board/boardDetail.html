@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    </style>
+
+    <script>
+        //
+
+        //
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <table class="table mt-5 text-center">
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">번호</td>
+                    <td th:text="${board.boardIdx}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">제목</td>
+                    <td th:text="${board.title}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">내용</td>
+                    <td th:text="${board.content}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">작성자</td>
+                    <td th:text="${board.createId}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">작성일</td>
+                    <td th:text="${board.createDt}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">수정자</td>
+                    <td th:text="${board.updateId}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">수정일</td>
+                    <td th:text="${board.updateDt}"></td>
+                </tr>
+                <tr class="py-3">
+                    <td class="bg-secondary bg-opacity-50">조회수</td>
+                    <td th:text="${board.hitCnt}"></td>
+                </tr>
+            </table>
+            <div>
+                <form action="/board/boardEdit" method="post">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a href="/board/boardList" class="btn btn-secondary">목록보기</a>
+                        </div>
+                        <div>
+                            <input type="text" th:value="${board}" name="board">
+                            <button type="submit" class="btn btn-warning">수정</button>
+                            <a class="btn btn-danger ms-3" href="/board/boardDelete">삭제</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
